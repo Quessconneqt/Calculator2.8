@@ -480,12 +480,9 @@ public class DisplayDataFromDatabase extends JFrame {
 				    
 				    System.out.println("String Manual FC = "+ ManualFC);
 				    
-				    String FCSummary=mmcd.FCSummary("SELECT A.CALC_AMT FC_SUMMARY \r\n"
-				    		+ "FROM CISADM.CI_BSEG_CALC_LN A,CISADM.CI_BSEG B,CISADM.CI_BILL C\r\n"
-				    		+ "WHERE A.BSEG_ID = B.BSEG_ID\r\n"
-				    		+ "AND B.BILL_ID = C.BILL_ID\r\n"
-				    		+ "AND C.BILL_ID = "+ "'" +text+ "'" + "    --Here you can input the BILL_id\r\n"
-				    		+ "AND A.DESCR_ON_BILL = 'Fixed Charge Summary'");
+				    String FCSummary=mmcd.FCSummary("SELECT A.DESCR_ON_BILL,A.CALC_AMT FC_SUMMARY FROM cisadm.CI_BSEG_CALC_LN A,cisadm.CI_BSEG B,cisadm.CI_BILL C\r\n"
+				    		+ "WHERE A.BSEG_ID = B.BSEG_ID AND B.BILL_ID = C.BILL_ID\r\n"
+				    		+ "AND C.BILL_ID = "+"'"+ text +"'"+" AND REPLACE(lower(DESCR_ON_BILL),'  ',' ') LIKE '%fixed charge summary%'");
 					
 					System.out.println("FCSUMMARY!:"+FCSummary);
 					
