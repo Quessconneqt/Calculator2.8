@@ -284,12 +284,10 @@ public class DisplayDataFromDatabase extends JFrame {
 				MemoryManagementCommonData mmcd = new MemoryManagementCommonData();
 				text = textField.getText();
 				try {
-					String HalfQuery4="select B.bseg_id, B.sqi_cd, B.bill_sq \r\n"
-							+ "from cisadm.ci_bseg A\r\n"
-							+ "inner join cisadm.ci_bseg_calc_ln B\r\n"
-							+ "on A.bseg_id = B.bseg_id \r\n"
-							+ "WHERE B.sqi_cd in('X-SLFC','X-R100','X-SLB50','X-SLB300','X-SLB500') and A.bill_id=";
-					mmcd.commonDataThreeColumns(HalfQuery4+"'"+text+"'", table_5);
+					String HalfQuery4="select B.bseg_id, B.sqi_cd, B.bill_sq\r\n"
+							+ "from cisadm.ci_bseg A inner join cisadm.ci_bseg_calc_ln B\r\n"
+							+ "on A.bseg_id = B.bseg_id WHERE A.bill_id=";
+					mmcd.commonDataThreeColumns(HalfQuery4+"'"+text+"'"+"AND BILL_SQ <> 0", table_5);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
